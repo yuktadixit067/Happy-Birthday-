@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise | Pappa & Rudra</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<!-- SCREEN 1 -->
+<section class="screen active" id="screen1">
+    <div class="content">
+        <div class="gift">🎁</div>
+        <p class="small-text">A little surprise awaits...</p>
+        <h1>Something Special<br><span>For Someone Special</span></h1>
+        <p class="subtitle">
+            Two birthdays. Two amazing souls.<br>
+            One unforgettable celebration.
+        </p>
+        <button class="main-btn" onclick="nextScreen(2)">
+            Open Your Surprise ✨
+        </button>
+    </div>
+</section>
+
+<!-- SCREEN 2 -->
+<section class="screen" id="screen2">
+    <div class="content">
+        <div class="balloon-container">
+            <span>🎈</span><span>🎈</span><span>🎈</span><span>🎈</span>
+        </div>
+
+        <p class="small-text">Today is all about you!</p>
+        <h1>Happy Birthday<br><span>Pappa & Rudra</span></h1>
+        <div class="cake-emoji">🎂</div>
+
+        <p class="subtitle">
+            Two people who make life brighter,<br>
+            happier and full of love.
+        </p>
+
+        <button class="main-btn" onclick="openBalloonScreen()">
+            Pop Some Balloons 🎈
+        </button>
+    </div>
+</section>
+
+<!-- SCREEN 3: BALLOONS -->
+<section class="screen" id="balloonScreen">
+    <div class="content">
+
+        <p class="small-text">Something is hiding inside...</p>
+        <h1>Pick Your <span>Balloons!</span></h1>
+
+        <p class="subtitle">
+            6 balloons. 2 hidden gifts.<br>
+            Pop and discover your surprises! 🎁
+        </p>
+
+        <div class="balloon-game">
+
+            <div class="pop-balloon" onclick="popBalloon(this,0)">
+                <div class="real-balloon pink-balloon">
+                    <div class="shine"></div>
+                    <div class="balloon-knot"></div>
+                </div>
+                <div class="string"></div>
+            </div>
+
+            <div class="pop-balloon" onclick="popBalloon(this,1)">
+                <div class="real-balloon purple-balloon">
+                    <div class="shine"></div>
+                    <div class="balloon-knot"></div>
+                </div>
+                <div class="string"></div>
+            </div>
+
+            <div class="pop-balloon" onclick="popBalloon(this,2)">
+                <div class="real-balloon gold-balloon">
+                    <div class="shine"></div>
+                    <div class="balloon-knot"></div>
+                </div>
+                <div class="string"></div>
+            </div>
+
+            <div class="pop-balloon" onclick="popBalloon(this,3)">
+                <div class="real-balloon blue-balloon">
+                    <div class="shine"></div>
+                    <div class="balloon-knot"></div>
+                </div>
+                <div class="string"></div>
+            </div>
+
+            <div class="pop-balloon" onclick="popBalloon(this,4)">
+                <div class="real-balloon pink-balloon">
+                    <div class="shine"></div>
+                    <div class="balloon-knot"></div>
+                </div>
+                <div class="string"></div>
+            </div>
+
+            <div class="pop-balloon" onclick="popBalloon(this,5)">
+                <div class="real-balloon purple-balloon">
+                    <div class="shine"></div>
+                    <div class="balloon-knot"></div>
+                </div>
+                <div class="string"></div>
+            </div>
+
+        </div>
+
+        <div id="balloonCounter">🎈 0 / 6 popped</div>
+
+        <div id="balloonMessage" class="balloon-message"></div>
+
+        <!-- SURPRISE GIFT BOX -->
+        <div id="giftReveal" class="gift-reveal">
+            <div class="gift-scene" onclick="openGift()" id="giftTapArea">
+                <div class="gift-box" id="interactiveGiftBox">
+                    <div class="gift-lid">
+                        <div class="lid-ribbon"></div>
+                        <div class="bow">
+                            <div class="bow-left"></div>
+                            <div class="bow-right"></div>
+                        </div>
+                    </div>
+
+                    <div class="gift-body">
+                        <div class="box-ribbon"></div>
+                        <div class="box-front"></div>
+                    </div>
+                </div>
+
+                <div class="gift-sparkles" id="giftSparkles"></div>
+            </div>
+
+            <p id="giftTapPrompt" class="gift-text">
+                👆 Tap the gift box to open!
+            </p>
+
+            <div id="giftResult" class="gift-result">
+                <h2>🎉 YOU GOT A SURPRISE GIFT! 🎉</h2>
+                <p>Because you deserve something special! ❤️🎁</p>
+            </div>
+        </div>
+
+        <button class="main-btn" id="balloonNext"
+                onclick="nextScreen(3)" style="display:none;">
+            Continue to Birthday Wishes 💖
+        </button>
+
+    </div>
+</section>
+
+<!-- SCREEN 4: PAPPA -->
+<section class="screen" id="screen3">
+    <div class="content">
+
+        <p class="small-text">A message from the heart...</p>
+        <h1>For My <span>Pappa</span> ❤️</h1>
+
+        <div class="photo-frame">
+            <img src="pappa.png" alt="Pappa"
+                onerror="this.style.display='none';document.getElementById('pappaPlaceholder').style.display='flex'">
+
+            <div class="photo-placeholder" id="pappaPlaceholder">
+                📷<br>Add Pappa's Photo
+            </div>
+        </div>
+
+        <div class="message-card">
+            <p>Happy Birthday, Pappa! ❤️</p>
+
+            <p>
+                Thank you for being my strength, my support,
+                and the person who always wants the best for me.
+                I may not say it every day, but I am so grateful
+                to have you in my life.
+            </p>
+
+            <p>
+                Your love, sacrifices, care and everything you
+                do mean more than words can ever express.
+            </p>
+
+            <p>
+                I wish you endless happiness, good health,
+                peace, laughter and all the beautiful things
+                you truly deserve.
+            </p>
+
+            <p class="signature">Love you forever, Pappa! 💗</p>
+        </div>
+
+        <button class="main-btn" onclick="nextScreen(4)">
+            Next Surprise 💫
+        </button>
+    </div>
+</section>
+
+<!-- SCREEN 5: RUDRA -->
+<section class="screen" id="screen4">
+    <div class="content">
+
+        <p class="small-text">And now, for the birthday boy...</p>
+        <h1>For <span>Rudra</span> 🎉</h1>
+
+        <div class="photo-frame">
+            <img src="rudra.png" alt="Rudra"
+                onerror="this.style.display='none';document.getElementById('rudraPlaceholder').style.display='flex'">
+
+            <div class="photo-placeholder" id="rudraPlaceholder">
+                📷<br>Add Rudra's Photo
+            </div>
+        </div>
+
+        <div class="message-card">
+            <p>Happy Birthday, Rudra! 🎂</p>
+
+            <p>
+                May your life always be full of crazy adventures,
+                big dreams, amazing opportunities and moments
+                that make you laugh until your stomach hurts.
+            </p>
+
+            <p>
+                Keep being yourself, keep growing, keep shining,
+                and never stop chasing the things that make you happy.
+            </p>
+
+            <p>
+                Wishing you the coolest year ever, filled with
+                success, happiness, fun and a little bit of madness!
+            </p>
+
+            <p class="signature">Have the best birthday ever! 🥳</p>
+        </div>
+
+        <button class="main-btn" onclick="nextScreen(5)">
+            Explore Our Memories 📸
+        </button>
+    </div>
+</section>
+
+<!-- SCREEN 6: MEMORIES -->
+<section class="screen" id="screen5">
+    <div class="content">
+
+        <p class="small-text">Moments worth keeping forever...</p>
+        <h1>Memory <span>Lane</span> ✨</h1>
+
+        <p class="subtitle">
+            Little moments. Big memories. Endless love.
+        </p>
+
+        <div class="gallery">
+
+            <div class="gallery-item">
+                <img src="memory1.png" alt="Memory 1"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="gallery-placeholder">📸 Photo 1</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="memory2.png" alt="Memory 2"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="gallery-placeholder">📸 Photo 2</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="memory3.png" alt="Memory 3"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="gallery-placeholder">📸 Photo 3</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="memory4.png" alt="Memory 4"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="gallery-placeholder">📸 Photo 4</div>
+            </div>
+
+        </div>
+
+        <button class="main-btn" onclick="nextScreen(6)">
+            Time for Cake 🎂
+        </button>
+    </div>
+</section>
+
+<!-- SCREEN 7: CAKE -->
+<section class="screen" id="screen6">
+    <div class="content">
+
+        <p class="small-text">Make a wish...</p>
+        <h1>The Birthday <span>Cake</span> 🎂</h1>
+
+        <p class="subtitle">
+            Two birthday boys. One cake.<br>
+            Infinite wishes.
+        </p>
+
+        <div class="cake">
+
+            <div class="candles">
+                <div class="candle"><div class="flame"></div></div>
+                <div class="candle"><div class="flame"></div></div>
+            </div>
+
+            <div class="cake-top"></div>
+            <div class="cake-middle"></div>
+            <div class="cake-bottom"></div>
+        </div>
+
+        <button class="main-btn" id="blowBtn" onclick="blowCandles()">
+            Blow the Candles 🕯️
+        </button>
+
+        <p id="wishMessage"></p>
+
+        <button class="main-btn" id="finalBtn"
+                onclick="nextScreen(7)" style="display:none;">
+            One Last Surprise 💌
+        </button>
+    </div>
+</section>
+
+<!-- SCREEN 8: FINAL -->
+<section class="screen" id="screen7">
+    <div class="content">
+
+        <div class="heart">💖</div>
+        <p class="small-text">A final little reminder...</p>
+
+        <h1>You're Loved<br><span>More Than You Know</span></h1>
+
+        <div class="message-card final-card">
+            <p>
+                Some things in life are priceless,
+                and having you both in my life is one of them.
+            </p>
+
+            <p>
+                I don't need a special day to be grateful for you,
+                but today gives me one more reason to say it.
+            </p>
+
+            <p>
+                I hope the coming year brings you everything
+                your hearts wish for, all the happiness you give
+                others, and many more beautiful memories together.
+            </p>
+
+            <p>Happy Birthday, Pappa & Rudra! 🎂❤️</p>
+
+            <p class="signature">With all my love, always. ✨</p>
+        </div>
+
+        <button class="main-btn" onclick="restart()">
+            Relive the Surprise ↺
+        </button>
+    </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
