@@ -694,58 +694,72 @@ h1 span {
 }
 
 /* ==============================
-   MEMORY GALLERY - SCRAPBOOK
+   MEMORY COLLAGE
 ============================== */
 
-.memory-gallery {
+#screen5 {
+    align-items: flex-start;
+    padding: 35px 15px;
+}
+
+#screen5 .content {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+#screen5 .memory-gallery {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px;
+    gap: 20px;
     width: 100%;
-    max-width: 580px;
-    margin: 35px auto;
-    padding: 10px;
+    max-width: 480px;
+    margin: 30px auto;
+    padding: 5px;
 }
 
-.memory-card {
+#screen5 .memory-card {
     position: relative;
-    height: 230px;
+    width: 100%;
+    height: 210px;
+    min-width: 0;
+    padding: 8px;
     background: #fff;
-    padding: 9px;
-    border-radius: 20px;
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
     overflow: hidden;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: none;
 }
 
-.memory-card:nth-child(1) {
-    transform: rotate(-3deg);
+#screen5 .memory-card:nth-child(1) {
+    transform: rotate(-2deg);
 }
 
-.memory-card:nth-child(2) {
-    transform: rotate(3deg);
-}
-
-.memory-card:nth-child(3) {
+#screen5 .memory-card:nth-child(2) {
     transform: rotate(2deg);
 }
 
-.memory-card:nth-child(4) {
-    transform: rotate(-3deg);
+#screen5 .memory-card:nth-child(3) {
+    transform: rotate(2deg);
 }
 
-.memory-card:hover {
-    transform: rotate(0deg) scale(1.04);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+#screen5 .memory-card:nth-child(4) {
+    transform: rotate(-2deg);
+}
+
+#screen5 .memory-card:hover {
+    transform: rotate(0deg) scale(1.03);
     z-index: 2;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
 }
 
-.memory-card img {
+#screen5 .memory-card img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 13px;
-    display: block;
+    border-radius: 10px;
 }
 
 /* ==============================
@@ -934,15 +948,6 @@ h1 span {
     .message-card {
         padding: 25px;
     }
-
-    .memory-gallery {
-        max-width: 450px;
-        gap: 18px;
-    }
-
-    .memory-card {
-        height: 190px;
-    }
 }
 
 /* ==============================
@@ -1056,46 +1061,6 @@ h1 span {
         line-height: 1.8;
     }
 
-    /* MEMORY COLLAGE */
-
-    .memory-gallery {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-        max-width: 360px;
-        margin: 25px auto;
-        padding: 5px;
-    }
-
-    .memory-card {
-        height: 165px;
-        padding: 6px;
-        border-radius: 15px;
-    }
-
-    .memory-card:nth-child(1) {
-        transform: rotate(-2deg);
-    }
-
-    .memory-card:nth-child(2) {
-        transform: rotate(2deg);
-    }
-
-    .memory-card:nth-child(3) {
-        transform: rotate(2deg);
-    }
-
-    .memory-card:nth-child(4) {
-        transform: rotate(-2deg);
-    }
-
-    .memory-card img {
-        border-radius: 10px;
-    }
-
-    .memory-card:hover {
-        transform: none;
-    }
-
     /* CAKE */
 
     .cake {
@@ -1105,6 +1070,41 @@ h1 span {
 
     .wish-message {
         font-size: 1rem;
+    }
+}
+
+/* ==============================
+   MEMORY COLLAGE - MOBILE
+============================== */
+
+@media (max-width: 600px) {
+
+    #screen5 {
+        padding: 22px 12px;
+    }
+
+    #screen5 .content {
+        max-width: 100%;
+    }
+
+    #screen5 .memory-gallery {
+        max-width: 360px;
+        gap: 12px;
+        margin: 20px auto;
+    }
+
+    #screen5 .memory-card {
+        height: 165px;
+        padding: 6px;
+        border-radius: 14px;
+    }
+
+    #screen5 .memory-card img {
+        border-radius: 9px;
+    }
+
+    #screen5 .memory-card:hover {
+        transform: none;
     }
 }
 
@@ -1122,12 +1122,12 @@ h1 span {
         padding: 22px 10px;
     }
 
-    .memory-gallery {
+    #screen5 .memory-gallery {
         gap: 10px;
         max-width: 310px;
     }
 
-    .memory-card {
+    #screen5 .memory-card {
         height: 140px;
         padding: 5px;
     }
@@ -1161,104 +1161,16 @@ h1 span {
 
 @media (max-width: 320px) {
 
-    .memory-gallery {
+    #screen5 .memory-gallery {
         gap: 8px;
         max-width: 280px;
     }
 
-    .memory-card {
+    #screen5 .memory-card {
         height: 125px;
     }
 
     h1 {
         font-size: 1.6rem;
-    }
-}
-/* ===== FINAL MEMORY IMAGE LAYOUT FIX ===== */
-
-#screen5 .content {
-    width: 100%;
-    max-width: 700px;
-    margin: auto;
-}
-
-#screen5 .memory-gallery {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    width: 100% !important;
-    max-width: 420px !important;
-    gap: 18px !important;
-    padding: 10px !important;
-    margin: 25px auto !important;
-}
-
-#screen5 .memory-card {
-    width: 100% !important;
-    height: 180px !important;
-    min-width: 0 !important;
-    padding: 7px !important;
-    overflow: hidden !important;
-    background: white !important;
-    border-radius: 16px !important;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
-}
-
-#screen5 .memory-card:nth-child(1) {
-    transform: rotate(-3deg) !important;
-}
-
-#screen5 .memory-card:nth-child(2) {
-    transform: rotate(3deg) !important;
-}
-
-#screen5 .memory-card:nth-child(3) {
-    transform: rotate(2deg) !important;
-}
-
-#screen5 .memory-card:nth-child(4) {
-    transform: rotate(-3deg) !important;
-}
-
-#screen5 .memory-card img {
-    width: 100% !important;
-    height: 100% !important;
-    display: block !important;
-    object-fit: cover !important;
-    border-radius: 10px !important;
-}
-
-/* DESKTOP */
-@media (min-width: 769px) {
-    #screen5 .memory-gallery {
-        max-width: 400px !important;
-        gap: 16px !important;
-    }
-
-    #screen5 .memory-card {
-        height: 170px !important;
-    }
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-    #screen5 .memory-gallery {
-        max-width: 320px !important;
-        gap: 12px !important;
-    }
-
-    #screen5 .memory-card {
-        height: 140px !important;
-    }
-}
-
-/* SMALL MOBILE */
-@media (max-width: 380px) {
-    #screen5 .memory-gallery {
-        max-width: 285px !important;
-        gap: 10px !important;
-    }
-
-    #screen5 .memory-card {
-        height: 120px !important;
     }
 }
