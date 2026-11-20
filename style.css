@@ -1174,3 +1174,91 @@ h1 span {
         font-size: 1.6rem;
     }
 }
+/* ===== FINAL MEMORY IMAGE LAYOUT FIX ===== */
+
+#screen5 .content {
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+}
+
+#screen5 .memory-gallery {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: 420px !important;
+    gap: 18px !important;
+    padding: 10px !important;
+    margin: 25px auto !important;
+}
+
+#screen5 .memory-card {
+    width: 100% !important;
+    height: 180px !important;
+    min-width: 0 !important;
+    padding: 7px !important;
+    overflow: hidden !important;
+    background: white !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+#screen5 .memory-card:nth-child(1) {
+    transform: rotate(-3deg) !important;
+}
+
+#screen5 .memory-card:nth-child(2) {
+    transform: rotate(3deg) !important;
+}
+
+#screen5 .memory-card:nth-child(3) {
+    transform: rotate(2deg) !important;
+}
+
+#screen5 .memory-card:nth-child(4) {
+    transform: rotate(-3deg) !important;
+}
+
+#screen5 .memory-card img {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    object-fit: cover !important;
+    border-radius: 10px !important;
+}
+
+/* DESKTOP */
+@media (min-width: 769px) {
+    #screen5 .memory-gallery {
+        max-width: 400px !important;
+        gap: 16px !important;
+    }
+
+    #screen5 .memory-card {
+        height: 170px !important;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    #screen5 .memory-gallery {
+        max-width: 320px !important;
+        gap: 12px !important;
+    }
+
+    #screen5 .memory-card {
+        height: 140px !important;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 380px) {
+    #screen5 .memory-gallery {
+        max-width: 285px !important;
+        gap: 10px !important;
+    }
+
+    #screen5 .memory-card {
+        height: 120px !important;
+    }
+}
