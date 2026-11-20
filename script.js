@@ -3,16 +3,23 @@ let giftBalloons = [];
 let giftRevealedCount = 0;
 let heartsStarted = false;
 
+
+// BALLOON MESSAGES
+
 const balloonMessages = [
-    "Oops! No gift here... but sending you lots of love! 💖",
-    "Surprise! Just happiness and a little confetti! 🎉",
-    "You found a balloon full of good vibes! ✨",
-    "No gift, but you deserve a million smiles! 😊",
-    "This balloon was filled with hugs! 🤗",
-    "Better luck next balloon! 🎈"
+    "🤪 You missed the surprise gift! Better luck next time!",
+    "😂 Nope! This balloon was just here to prank you!",
+    "😜 Empty balloon! The gift is hiding somewhere else!",
+    "Oopsie! No gift here. Your luck is on vacation! 🏖️",
+    "🤣 Surprise... absolutely NOTHING! Better luck next time!",
+    "🎈 Nice try! The gift escaped this balloon!"
 ];
 
+
+// SELECT TWO RANDOM GIFT BALLOONS
+
 function selectGiftBalloons() {
+
     let numbers = [0, 1, 2, 3, 4, 5];
 
     for (let i = numbers.length - 1; i > 0; i--) {
@@ -23,7 +30,11 @@ function selectGiftBalloons() {
     giftBalloons = numbers.slice(0, 2);
 }
 
+
+// NAVIGATION
+
 function nextScreen(screenNumber) {
+
     document.querySelectorAll(".screen").forEach(screen => {
         screen.classList.remove("active");
     });
@@ -37,15 +48,18 @@ function nextScreen(screenNumber) {
     if (screenNumber === 7) startHearts();
 }
 
+
+// OPEN BALLOON GAME
+
 function openBalloonScreen() {
+
     poppedCount = 0;
     giftRevealedCount = 0;
 
     selectGiftBalloons();
 
     document.querySelectorAll(".pop-balloon").forEach(balloon => {
-        balloon.classList.remove("popped", "shaking");
-        balloon.style.pointerEvents = "auto";
+        balloon.classList.remove("popped", "shaking", "locked");
     });
 
     document.getElementById("balloonMessage").innerHTML = "";
@@ -54,6 +68,7 @@ function openBalloonScreen() {
     document.getElementById("interactiveGiftBox").classList.remove("open");
     document.getElementById("giftResult").classList.remove("show");
     document.getElementById("giftTapPrompt").style.display = "block";
+    document.getElementById("giftReveal").classList.remove("show");
 
     document.getElementById("balloonNext").style.display = "none";
 
@@ -66,18 +81,22 @@ function openBalloonScreen() {
     document.getElementById("balloonScreen").classList.add("active");
 }
 
+
+// POP BALLOON
+
 function popBalloon(balloon, index) {
 
-    // LIMIT: ONLY 2 BALLOONS
-    if (poppedCount >= 2) return;
-
-    if (balloon.classList.contains("popped")) return;
+    if (balloon.classList.contains("popped") ||
+        poppedCount >= 2 ||
+        balloon.classList.contains("locked")) {
+        return;
+    }
 
     balloon.classList.add("shaking");
 
     setTimeout(() => {
 
-        if (poppedCount >= 2) return;
+        if (poppedCount >= 2 || balloon.classList.contains("popped")) return;
 
         balloon.classList.remove("shaking");
         balloon.classList.add("popped");
@@ -86,8 +105,8 @@ function popBalloon(balloon, index) {
 
         createBurst(balloon);
 
-        document.getElementById("balloonCounter")
-            .innerHTML = `🎈 ${poppedCount} / 2 popped`;
+        document.getElementById("balloonCounter").innerHTML =
+            `🎈 ${poppedCount} / 2 popped`;
 
         const message = document.getElementById("balloonMessage");
         const giftReveal = document.getElementById("giftReveal");
@@ -102,7 +121,9 @@ function popBalloon(balloon, index) {
 
             giftRevealedCount++;
 
-            message.innerHTML = "✨✨ A SPECIAL SURPRISE! ✨✨";
+            message.innerHTML =
+                "✨✨ YOU FOUND A SECRET GIFT BALLOON! ✨✨";
+
             message.classList.add("message-reveal");
 
             const giftBox = document.querySelector("#interactiveGiftBox");
@@ -112,13 +133,8 @@ function popBalloon(balloon, index) {
             document.getElementById("giftResult").classList.remove("show");
             document.getElementById("giftTapPrompt").style.display = "block";
 
-            document.getElementById("giftSparkles").innerHTML = `
-                <span>✨</span>
-                <span>⭐</span>
-                <span>💖</span>
-                <span>✨</span>
-                <span>💫</span>
-            `;
+            document.getElementById("giftSparkles").innerHTML =
+                `<span>✨</span><span>⭐</span><span>💖</span><span>✨</span><span>💫</span>`;
 
             giftReveal.style.display = "block";
 
@@ -138,35 +154,29 @@ function popBalloon(balloon, index) {
             confettiSmall();
         }
 
-        // WHEN 2 BALLOONS ARE POPPED
         if (poppedCount === 2) {
 
-            // LOCK REMAINING BALLOONS
-            document.querySelectorAll(".pop-balloon").forEach(b => {
-                if (!b.classList.contains("popped")) {
-                    b.style.pointerEvents = "none";
-                }
-            });
+            document.querySelectorAll(".pop-balloon:not(.popped)")
+                .forEach(b => b.classList.add("locked"));
 
             setTimeout(() => {
 
-                message.innerHTML = "🎊 That's it! Your surprises await! 🎊";
+                document.getElementById("balloonNext").style.display =
+                    "inline-block";
 
-                message.classList.remove("message-reveal");
-                void message.offsetWidth;
-                message.classList.add("message-reveal");
-
-                // SHOW NEXT BUTTON IMMEDIATELY AFTER 2 POPS
-                document.getElementById("balloonNext")
-                    .style.display = "inline-block";
+                message.innerHTML +=
+                    `<br><br>🎊 That's your 2 tries! Let's continue!`;
 
                 confetti();
 
-            }, 800);
+            }, 900);
         }
 
     }, 400);
 }
+
+
+// TAP TO OPEN THE GIFT
 
 function openGift() {
 
@@ -185,6 +195,9 @@ function openGift() {
         document.getElementById("giftResult").classList.add("show");
     }, 850);
 }
+
+
+// PARTICLE BURST
 
 function createBurst(balloon) {
 
@@ -219,6 +232,9 @@ function createBurst(balloon) {
     }
 }
 
+
+// CAKE
+
 function blowCandles() {
 
     document.querySelectorAll(".flame").forEach(flame => {
@@ -234,6 +250,9 @@ function blowCandles() {
 
     confetti();
 }
+
+
+// CONFETTI
 
 function confetti() {
 
@@ -257,9 +276,12 @@ function confetti() {
     }
 }
 
+
+// SMALL CONFETTI
+
 function confettiSmall() {
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 40; i++) {
 
         const piece = document.createElement("div");
 
@@ -270,25 +292,57 @@ function confettiSmall() {
 
         piece.style.animationDuration = (1 + Math.random() * 2) + "s";
 
+        piece.style.width = (4 + Math.random() * 8) + "px";
+        piece.style.height = (4 + Math.random() * 8) + "px";
+
         document.body.appendChild(piece);
 
         setTimeout(() => piece.remove(), 3000);
     }
 }
 
+
+// RANDOM COLORS
+
 function randomColor() {
 
     const colors = [
-        "#ff9dcf",
-        "#b79aff",
-        "#ffd780",
+        "#ff4f9a",
+        "#ffd166",
+        "#a78bfa",
+        "#7dd3fc",
+        "#ff6b6b",
         "#ffffff",
-        "#ff80a5",
-        "#a9e7ff"
+        "#c084fc"
     ];
 
     return colors[Math.floor(Math.random() * colors.length)];
 }
+
+
+// STARS
+
+function createStars() {
+
+    const stars = document.getElementById("stars");
+
+    for (let i = 0; i < 100; i++) {
+
+        const star = document.createElement("div");
+
+        star.className = "star";
+
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+
+        star.style.animationDelay = Math.random() * 3 + "s";
+
+        stars.appendChild(star);
+    }
+}
+
+
+// HEARTS
 
 function startHearts() {
 
@@ -296,56 +350,37 @@ function startHearts() {
 
     heartsStarted = true;
 
+    const container = document.getElementById("finalHearts");
+
     setInterval(() => {
 
-        const heart = document.createElement("div");
+        const heart = document.createElement("span");
 
-        heart.classList.add("floating-heart");
-
-        heart.innerHTML = ["💖", "💕", "💗", "❤️", "✨"][
+        heart.innerHTML = ["❤️", "💖", "💕", "💗", "💓"][
             Math.floor(Math.random() * 5)
         ];
 
-        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.left = Math.random() * 100 + "%";
 
-        document.body.appendChild(heart);
+        heart.className = "floating-heart";
+
+        container.appendChild(heart);
 
         setTimeout(() => heart.remove(), 5000);
 
-    }, 500);
+    }, 300);
 }
 
-function createStars() {
 
-    const starsContainer = document.getElementById("stars");
-
-    for (let i = 0; i < 70; i++) {
-
-        const star = document.createElement("span");
-
-        star.classList.add("star");
-        star.innerHTML = "✦";
-
-        star.style.left = Math.random() * 100 + "vw";
-        star.style.top = Math.random() * 100 + "vh";
-
-        star.style.fontSize = (5 + Math.random() * 12) + "px";
-
-        star.style.animationDelay = Math.random() * 3 + "s";
-
-        starsContainer.appendChild(star);
-    }
-}
+// RESTART
 
 function restart() {
 
     poppedCount = 0;
     giftRevealedCount = 0;
-    heartsStarted = false;
 
     document.querySelectorAll(".pop-balloon").forEach(balloon => {
-        balloon.classList.remove("popped", "shaking");
-        balloon.style.pointerEvents = "auto";
+        balloon.classList.remove("popped", "shaking", "locked");
     });
 
     document.getElementById("balloonMessage").innerHTML = "";
@@ -359,18 +394,20 @@ function restart() {
 
     document.getElementById("balloonCounter").innerHTML = "🎈 0 / 2 popped";
 
-    document.getElementById("blowBtn").style.display = "inline-block";
-
-    document.getElementById("finalBtn").style.display = "none";
-
-    document.getElementById("wishMessage").innerHTML = "";
-
     document.querySelectorAll(".flame").forEach(flame => {
         flame.classList.remove("off");
     });
 
+    document.getElementById("wishMessage").textContent =
+        "Make a wish and blow the candles! ✨";
+
+    document.getElementById("blowBtn").style.display = "inline-block";
+    document.getElementById("finalBtn").style.display = "none";
+
     nextScreen(1);
 }
 
+
+// INITIALIZE
+
 createStars();
-nextScreen(1);
