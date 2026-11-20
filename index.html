@@ -112,14 +112,16 @@
 
         </div>
 
-        <div id="balloonCounter">🎈 0 / 6 popped</div>
+        <div id="balloonCounter">🎈 0 / 2 popped</div>
 
         <div id="balloonMessage" class="balloon-message"></div>
 
-        <!-- SURPRISE GIFT BOX -->
+        <!-- TAP-TO-OPEN GIFT BOX -->
         <div id="giftReveal" class="gift-reveal">
             <div class="gift-scene" onclick="openGift()" id="giftTapArea">
+
                 <div class="gift-box" id="interactiveGiftBox">
+
                     <div class="gift-lid">
                         <div class="lid-ribbon"></div>
                         <div class="bow">
@@ -132,6 +134,7 @@
                         <div class="box-ribbon"></div>
                         <div class="box-front"></div>
                     </div>
+
                 </div>
 
                 <div class="gift-sparkles" id="giftSparkles"></div>
@@ -205,8 +208,8 @@
 <section class="screen" id="screen4">
     <div class="content">
 
-        <p class="small-text">And now, for the birthday boy...</p>
-        <h1>For <span>Rudra</span> 🎉</h1>
+        <p class="small-text">And now, the birthday boy...</p>
+        <h1>For <span>Rudra</span> 🥳</h1>
 
         <div class="photo-frame">
             <img src="rudra.png" alt="Rudra"
@@ -218,29 +221,29 @@
         </div>
 
         <div class="message-card">
-            <p>Happy Birthday, Rudra! 🎂</p>
+            <p>Happy Birthday, Rudra! 🎉</p>
 
             <p>
-                May your life always be full of crazy adventures,
-                big dreams, amazing opportunities and moments
-                that make you laugh until your stomach hurts.
+                Keep smiling, keep being your crazy self
+                and keep making life more fun.
             </p>
 
             <p>
-                Keep being yourself, keep growing, keep shining,
-                and never stop chasing the things that make you happy.
+                May this year bring you lots of happiness,
+                amazing memories, success and everything
+                you wish for.
             </p>
 
             <p>
-                Wishing you the coolest year ever, filled with
-                success, happiness, fun and a little bit of madness!
+                Enjoy your day to the fullest because
+                today is all about YOU! 😎
             </p>
 
-            <p class="signature">Have the best birthday ever! 🥳</p>
+            <p class="signature">Happy Birthday! 💙</p>
         </div>
 
         <button class="main-btn" onclick="nextScreen(5)">
-            Explore Our Memories 📸
+            See Our Memories 📸
         </button>
     </div>
 </section>
@@ -249,43 +252,36 @@
 <section class="screen" id="screen5">
     <div class="content">
 
-        <p class="small-text">Moments worth keeping forever...</p>
-        <h1>Memory <span>Lane</span> ✨</h1>
+        <p class="small-text">Little moments, big memories...</p>
+        <h1>Our <span>Memories</span> ❤️</h1>
 
-        <p class="subtitle">
-            Little moments. Big memories. Endless love.
-        </p>
+        <div class="memory-gallery">
 
-        <div class="gallery">
-
-            <div class="gallery-item">
-                <img src="memory1.png" alt="Memory 1"
-                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <div class="gallery-placeholder">📸 Photo 1</div>
+            <div class="memory-card">
+                <img src="memory1.png" alt="Memory 1">
             </div>
 
-            <div class="gallery-item">
-                <img src="memory2.png" alt="Memory 2"
-                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <div class="gallery-placeholder">📸 Photo 2</div>
+            <div class="memory-card">
+                <img src="memory2.png" alt="Memory 2">
             </div>
 
-            <div class="gallery-item">
-                <img src="memory3.png" alt="Memory 3"
-                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <div class="gallery-placeholder">📸 Photo 3</div>
+            <div class="memory-card">
+                <img src="memory3.png" alt="Memory 3">
             </div>
 
-            <div class="gallery-item">
-                <img src="memory4.png" alt="Memory 4"
-                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                <div class="gallery-placeholder">📸 Photo 4</div>
+            <div class="memory-card">
+                <img src="memory4.png" alt="Memory 4">
             </div>
 
         </div>
 
+        <p class="subtitle">
+            Every memory is a little treasure
+            that makes life beautiful. 💖
+        </p>
+
         <button class="main-btn" onclick="nextScreen(6)">
-            Time for Cake 🎂
+            Let's Cut the Cake 🎂
         </button>
     </div>
 </section>
@@ -295,18 +291,19 @@
     <div class="content">
 
         <p class="small-text">Make a wish...</p>
-        <h1>The Birthday <span>Cake</span> 🎂</h1>
-
-        <p class="subtitle">
-            Two birthday boys. One cake.<br>
-            Infinite wishes.
-        </p>
+        <h1>Birthday <span>Cake</span> 🎂</h1>
 
         <div class="cake">
-
             <div class="candles">
-                <div class="candle"><div class="flame"></div></div>
-                <div class="candle"><div class="flame"></div></div>
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
             </div>
 
             <div class="cake-top"></div>
@@ -314,15 +311,17 @@
             <div class="cake-bottom"></div>
         </div>
 
+        <p id="wishMessage" class="wish-message">
+            Make a wish and blow the candles! ✨
+        </p>
+
         <button class="main-btn" id="blowBtn" onclick="blowCandles()">
             Blow the Candles 🕯️
         </button>
 
-        <p id="wishMessage"></p>
-
         <button class="main-btn" id="finalBtn"
                 onclick="nextScreen(7)" style="display:none;">
-            One Last Surprise 💌
+            Final Surprise 💖
         </button>
     </div>
 </section>
@@ -331,35 +330,39 @@
 <section class="screen" id="screen7">
     <div class="content">
 
-        <div class="heart">💖</div>
-        <p class="small-text">A final little reminder...</p>
+        <div class="final-hearts" id="finalHearts"></div>
 
-        <h1>You're Loved<br><span>More Than You Know</span></h1>
+        <p class="small-text">One last thing...</p>
+        <h1>We Love You<br><span>Both! ❤️</span></h1>
 
         <div class="message-card final-card">
             <p>
-                Some things in life are priceless,
-                and having you both in my life is one of them.
+                Happy Birthday to the two most special
+                people in our lives! ❤️
             </p>
 
             <p>
-                I don't need a special day to be grateful for you,
-                but today gives me one more reason to say it.
+                Life is better, brighter and happier
+                because you both are a part of it.
             </p>
 
             <p>
-                I hope the coming year brings you everything
-                your hearts wish for, all the happiness you give
-                others, and many more beautiful memories together.
+                We may not always express it,
+                but you both mean the world to us.
             </p>
 
-            <p>Happy Birthday, Pappa & Rudra! 🎂❤️</p>
+            <p>
+                May every day bring you love,
+                laughter, happiness and beautiful moments.
+            </p>
 
-            <p class="signature">With all my love, always. ✨</p>
+            <p class="signature">
+                Happy Birthday Pappa & Rudra! 🎂💖
+            </p>
         </div>
 
         <button class="main-btn" onclick="restart()">
-            Relive the Surprise ↺
+            Start Again 🎉
         </button>
     </div>
 </section>
